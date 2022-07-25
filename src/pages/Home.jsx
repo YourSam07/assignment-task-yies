@@ -64,12 +64,12 @@ function Home() {
 
   return (
     <>
-      <div className="block p-2 text-5xl mb-6">
+      <div className="sm-text-5xl text-center block text-4xl p-2  mb-6">
         Find Your Pokemon
       </div>
       <div className="in-search" >
-        <form className='flex justify-between gap-8' onSubmit={(e) => findYourPokemon(e)}>
-          <input type="text" name="pokename" autoComplete='off' className='px-4 py-2 rounded-md text-black' />
+        <form className='flex flex-col sm:justify-between sm:gap-8 sm:flex sm:flex-row' onSubmit={(e) => findYourPokemon(e)}>
+          <input type="text" name="pokename" autoComplete='off' className='px-4 py-2 rounded-md text-black mb-4 sm:mb-0' />
           <button type='submit' className='px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md shadow-md hover:shadow-blue-600 cursor-pointer'>Search</button>
         </form>
       </div>

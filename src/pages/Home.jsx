@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import Card from '../components/Card';
+import Cards from '../components/Cards';
 
 function Home() {
   const [found, setFound] = useState(false)
@@ -79,7 +79,7 @@ function Home() {
           <div className="wrapper flex flex-wrap justify-center p-10">
             {allPokemons.map((item, index) => {
               return (
-                <Card name={item.name}
+                <Cards name={item.name}
                   type={item.types[0].type.name}
                   image={item.sprites.other.dream_world.front_default}
                   gradcolor = {colorpicker(item.types[0].type.name)}
@@ -91,7 +91,7 @@ function Home() {
           <button onClick={getAllPokemons} className="text-white text-xl bg-slate-600 rounded-lg p-2 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 cursor-pointer">Load More...</button>
         </div>
           : <div className="wrapper flex flex-wrap flex-col justify-center p-10">
-            <Card name={singlepoke?.name}
+            <Cards name={singlepoke?.name}
               type={singlepoke?.types[0]?.type?.name}
               image={singlepoke?.sprites.other.dream_world.front_default}
               gradcolor={colorpicker(singlepoke?.types[0].type.name)}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Card({name, type, image, gradcolor=[]}) {
+function Cards({name, type, image, gradcolor=[]}) {
   return (
     <div className="card px-4 py-3 flex flex-col justify-center text-center shadow-md shadow-slate-100 bg-white rounded-lg m-4 hover:cursor-pointer hover:scale-105"
     style={{
@@ -10,7 +10,7 @@ function Card({name, type, image, gradcolor=[]}) {
         {name}
       </div>
       <div className="image">
-        <img src={image} alt="" style={{height: '200px', width: '150px'}} />
+        <img src={image} alt="" style={{height: '250px', width: '200px'}} />
       </div>
       <div className="type  text-black text-xl">
         Type: {type}
@@ -19,4 +19,4 @@ function Card({name, type, image, gradcolor=[]}) {
   )
 }
 
-export default Card
+export default Cards

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+  .fire{
+    background-image: linear-gradient(red, yellow, blue);
+  }
+}

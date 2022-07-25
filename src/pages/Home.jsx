@@ -74,9 +74,9 @@ function Home() {
         </form>
       </div>
 
-      <div className="cardwrapper flex flex-wrap justify-center p-10">
+      <div className="cardwrapper flex flex-wrap justify-center p-4 sm:p-10">
         {!found ? <div className='text-center'>
-          <div className="wrapper flex flex-wrap justify-center p-10">
+          <div className="wrapper flex flex-wrap justify-center p-4 sm:p-10">
             {allPokemons.map((item, index) => {
               return (
                 <Cards name={item.name}

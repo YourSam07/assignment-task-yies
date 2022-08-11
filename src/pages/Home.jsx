@@ -10,21 +10,21 @@ function Home() {
 
   const colorpicker = (type) => {
     var color = []
-    if (type == "fire") { color = ["#dc2626", "#fca5a5"] }
-    if (type == "grass") { color = ["#84cc16", "#bef264"] }
-    if (type == "electric") { color = ["#6366f1", "#a5b4fc"] }
-    if (type == "water") { color = ["#3b82f6", "#93c5fd"] }
-    if (type == "ground") { color = ["#10b981", "#6ee7b7"] }
-    if (type == "rock") { color = ["#6b7280", "#d1d5db"] }
-    if (type == "fairy") { color = ["#ec4899", "#f9a8d4"] }
-    if (type == "poison") { color = ["#a855f7", "#d8b4fe"] }
-    if (type == "bug") { color = ["#22c55e", "#86efac"] }
-    if (type == "dragon") { color = ["#b91c1c", "#ef4444"] }
-    if (type == "psychic") { color = ["#e11d48", "#fb7185"] }
-    if (type == "flying") { color = ["#0ea5e9", "#7dd3fc"] }
-    if (type == "fighting") { color = ["#f97316", "#fdba74"] }
-    if (type == "normal") { color = ["#facc15", "#fef08a"] }
-    return color
+    if (type=="fire"){color = ["#dc2626", "#fca5a5"]}
+    if (type=="grass"){ color = ["#84cc16", "#bef264"]}
+    if (type=="electric"){ color = ["#6366f1", "#a5b4fc"]}
+    if (type=="water"){ color = ["#3b82f6", "#93c5fd"]}
+    if (type=="ground"){ color = ["#10b981", "#6ee7b7"]}
+    if (type=="rock"){ color = ["#6b7280", "#d1d5db"]}
+    if (type=="fairy"){ color = ["#ec4899", "#f9a8d4"]}
+    if (type=="poison"){ color = ["#a855f7", "#d8b4fe"]}
+    if (type=="bug"){ color = ["#22c55e", "#86efac"]}
+    if (type=="dragon"){ color = ["#b91c1c", "#ef4444"]}
+    if (type=="psychic"){ color = ["#e11d48", "#fb7185"]}
+    if (type=="flying"){ color = ["#0ea5e9", "#7dd3fc"]}
+    if (type=="fighting"){ color = ["#f97316", "#fdba74"]}
+    if (type=="normal"){ color = ["#facc15", "#fef08a"]}
+  return color
   }
 
   const getAllPokemons = async () => {
@@ -104,4 +104,4 @@ function Home() {
       )
 }
 
-      export default Home
+export default Home

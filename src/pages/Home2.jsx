@@ -1,29 +1,29 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import Cards from '../components/Cards';
+import Cards from '../components/Cards'
 
-function Home() {
-  const [found, setFound] = useState(false)
+const Home2 = () => {
   const [singlepoke, setSinglePoke] = useState()
+  const [found, setFound] = useState(false)
+  const [isFetching, setIsFetching] = useState(false)
   const [allPokemons, setAllPokemons] = useState([])
   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
-
   const colorpicker = (type) => {
     var color = []
-    if (type == "fire") { color = ["#dc2626", "#fca5a5"] }
-    if (type == "grass") { color = ["#84cc16", "#bef264"] }
-    if (type == "electric") { color = ["#6366f1", "#a5b4fc"] }
-    if (type == "water") { color = ["#3b82f6", "#93c5fd"] }
-    if (type == "ground") { color = ["#10b981", "#6ee7b7"] }
-    if (type == "rock") { color = ["#6b7280", "#d1d5db"] }
-    if (type == "fairy") { color = ["#ec4899", "#f9a8d4"] }
-    if (type == "poison") { color = ["#a855f7", "#d8b4fe"] }
-    if (type == "bug") { color = ["#22c55e", "#86efac"] }
-    if (type == "dragon") { color = ["#b91c1c", "#ef4444"] }
-    if (type == "psychic") { color = ["#e11d48", "#fb7185"] }
-    if (type == "flying") { color = ["#0ea5e9", "#7dd3fc"] }
-    if (type == "fighting") { color = ["#f97316", "#fdba74"] }
-    if (type == "normal") { color = ["#facc15", "#fef08a"] }
+    if (type === "fire") { color = ["#dc2626", "#fca5a5"] }
+    if (type === "grass") { color = ["#84cc16", "#bef264"] }
+    if (type === "electric") { color = ["#6366f1", "#a5b4fc"] }
+    if (type === "water") { color = ["#3b82f6", "#93c5fd"] }
+    if (type === "ground") { color = ["#10b981", "#6ee7b7"] }
+    if (type === "rock") { color = ["#6b7280", "#d1d5db"] }
+    if (type === "fairy") { color = ["#ec4899", "#f9a8d4"] }
+    if (type === "poison") { color = ["#a855f7", "#d8b4fe"] }
+    if (type === "bug") { color = ["#22c55e", "#86efac"] }
+    if (type === "dragon") { color = ["#b91c1c", "#ef4444"] }
+    if (type === "psychic") { color = ["#e11d48", "#fb7185"] }
+    if (type === "flying") { color = ["#0ea5e9", "#7dd3fc"] }
+    if (type === "fighting") { color = ["#f97316", "#fdba74"] }
+    if (type === "normal") { color = ["#facc15", "#fef08a"] }
     return color
   }
 
@@ -43,8 +43,38 @@ function Home() {
   }
 
   useEffect(() => {
-    getAllPokemons()
-  }, [])
+    getAllPokemons();
+    console.log("working")
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isFetching) return;
+    fetchMorePokemons();
+  }, [isFetching]);
+
+  function handleScroll() {
+    if (window.innerHeight + document.documentElement.scrollTop === document.scrollingElement.scrollHeight) return;
+    setIsFetching(true);
+  }
+
+  const fetchMorePokemons = async () => {
+    setTimeout(async() => {
+      const res = await axios.get(loadMore)
+      console.log(res)
+      function addPoketoList(results) {
+        results.forEach(async pokemon => {
+          const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+          const data = await res.json()
+          setAllPokemons(currentList => [...currentList, data])
+        })
+      }
+      addPoketoList(res.data.results)
+      setLoadMore(res.data.next)
+      setIsFetching(false)
+    }, 2000);
+  }
 
   const findYourPokemon = async (e) => {
     e.preventDefault();
@@ -56,7 +86,6 @@ function Home() {
       console.log(error)
     }
   }
-  console.log(singlepoke)
 
   const back = () => {
     setFound(false)
@@ -88,20 +117,20 @@ function Home() {
               )
             })}
           </div>
-          <button onClick={getAllPokemons} className="text-white text-xl bg-slate-600 rounded-lg p-2 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 cursor-pointer">Load More...</button>
         </div>
           : <div className="wrapper flex flex-wrap flex-col justify-center p-10">
-            <Cards name={singlepoke?.name}
+            {singlepoke ? <Cards name={singlepoke?.name}
               type={singlepoke?.types[0]?.type?.name}
               image={singlepoke?.sprites.other.dream_world.front_default}
               gradcolor={colorpicker(singlepoke?.types[0].type.name)}
-            />
-            <button onClick={() => back()} className="text-white text-xl bg-slate-600 rounded-lg p-2 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 cursor-pointer">Go Back</button>
+            /> : <div>No such Pokemon. Please enter a different name</div>}
+            <button onClick={() => back()} className="text-white text-xl bg-slate-600 rounded-lg p-2 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 cursor-pointer m-6">Go Back</button>
           </div>
         }
-        </div>
+      </div>
+      {isFetching && 'Fetching more Pokemons...'}
     </>
-      )
+  )
 }
 
-      export default Home
+export default Home2
